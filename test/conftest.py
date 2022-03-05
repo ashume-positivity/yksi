@@ -1,18 +1,11 @@
 import pytest
-from flask import Flask
 
-
-def App():
-    app = Flask(__name__)
-    @app.route('/')
-    def getGameState():
-        return {'Hello': 'World'}
-    return app
+from main.app import create_app
 
 
 @pytest.fixture()
 def app():
-    app = App()
+    app = create_app()
     app.config.update({
         "TESTING": True,
     })
