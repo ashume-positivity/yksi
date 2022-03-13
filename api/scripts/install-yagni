@@ -1,0 +1,14 @@
+#!/bin/zsh
+cat <<EOF | ssh yagni -T
+  pip install flask waitress --user
+
+  mkdir yksi
+  cd yksi
+  git init
+  git remote add -f origin https://github.com/ashume-positivity/yksi
+  git config core.sparseCheckout true
+  echo api >> .git/info/sparse-checkout
+  git pull origin main
+  ln -s $HOME/yksi/api/scripts/yksi.service $HOME/.config/systemd/user
+  systemctl enable yksi --user
+EOF

@@ -1,0 +1,10 @@
+[Unit]
+Description=yksi
+
+[Service]
+ExecStart=/usr/bin/python -m waitress --port 8087 --call main.app:create_app
+Type=simple
+WorkingDirectory=/home/arctair/yksi/api
+
+[Install]
+WantedBy=default.target
